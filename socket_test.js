@@ -1,30 +1,23 @@
-var net = require('net');
+var express = require('express')
+//  , routes = require('./routes')
+  , http = require('http');
 
-var HOST = '0.0.0.0';
-var PORT = 80;
+var app = express();
+var server = app.listen(80);
+var io = require('socket.io').listen(server);
 
-// Create a server instance, and chain the listen function to it
-// The function passed to net.createServer() becomes the event handler for the 'connection' event
-// The sock object the callback function receives UNIQUE for each connection
-net.createServer(function(sock) {
-    
-    // We have a connection - a socket object is assigned to the connection automatically
-    console.log('CONNECTED: ' + sock.remoteAddress +':'+ sock.remotePort);
-    
-    // Add a 'data' event handler to this instance of socket
-    sock.on('data', function(data) {
-        
-        console.log('DATA ' + sock.remoteAddress + ': ' + data);
-        // Write the data back to the socket, the client will receive it as data from the server
-        sock.write('You said "' + data + '"');
-        
-    });
-    
-    // Add a 'close' event handler to this instance of socket
-    sock.on('close', function(data) {
-        console.log('CLOSED: ' + sock.remoteAddress +' '+ sock.remotePort);
-    });
-    
-}).listen(PORT, HOST);
+app.get('/', function (req,res) {
+        //res.send('Hello Baby World!는 무슨 쉬바 이거 만드는데 3:47분까지 함\n');
+        var output = [];
+        output.push({name: 'lollaby', objective: '5 milion won', comment: 'Hello Baby World!'});
+        res.send(output);
+        console.log('app.get');
+});
 
-console.log('Server listening on ' + HOST +':'+ PORT);
+
+io.sockets.on('connection', function(socket) {
+	socket.on('join', function(data) {
+		console.log(data);
+	});
+	console.log('conne');
+});
