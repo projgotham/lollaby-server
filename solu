@@ -7,7 +7,6 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var rest = require('./routes/rest');
 
 var app = express();
 
@@ -25,7 +24,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/rest', rest);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -57,6 +55,7 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
 
 
 //-----------------------------------------------------------
@@ -169,7 +168,7 @@ function rowsToJson(rows){
                 jsonObject.name = rows[i].name;
                 jsonObjectList[i] = jsonObject;
                 console.log(rows[i].id+" | "+rows[i].password+" | "+rows[i].name);
-                //console.log(jsonObjectList);
+                console.log(jsonObjectList);
         }
 
         return jsonObjectList;
