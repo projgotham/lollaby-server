@@ -4,7 +4,6 @@ module.exports = function() {
                 port : 3306,
                 user : "master",
                 password : "masterpw",
-                database : "lollaby",
-		charset  : "utf8"
+                database : "lollaby"
 	});
 };
