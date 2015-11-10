@@ -42,7 +42,7 @@ const checkUserIdQuery = ("SELECT count(*) AS count FROM user where id=?");
  * output : mid, status, statusNm, temperature, humidity, pressure, date
  */
 const selectStatusByIdURL = ("/selectStatusById/:id");
-const selectStatusByIdQuery = ("SELECT A.mid, A.status, (SELECT cdNm from code where cdGroup='status' and cd=A.status) as statusNm, A.temperature, A.humidity, A.pressure, A.date FROM machine A where A.mid IN(SELECT mid FROM machineOwner where id = ?);");
+const selectStatusByIdQuery = ("SELECT A.mid, A.status, (SELECT cdNm from code where cdGroup='status' and cd=A.status) as statusNm, A.temperature, A.humidity, A.noise, A.pressure, A.date FROM machine A where A.mid IN(SELECT mid FROM machineOwner where id = ?);");
 
 /**
  * 해당 기기의 상태를 select
@@ -50,7 +50,7 @@ const selectStatusByIdQuery = ("SELECT A.mid, A.status, (SELECT cdNm from code w
  * output : mid, status, statusNm, temperature, humidity, pressure, date
  */
 const selectStatusURL = ("/selectStatus/:mid");
-const selectStatusQuery = ("SELECT A.mid, A.status, (SELECT cdNm from code where cdGroup='status' and cd=A.status) as statusNm, A.temperature, A.humidity, A.pressure, A.date FROM machine A where A.mid=?;");
+const selectStatusQuery = ("SELECT A.mid, A.status, (SELECT cdNm from code where cdGroup='status' and cd=A.status) as statusNm, A.temperature, A.humidity, A.noise, A.pressure, A.date FROM machine A where A.mid=?;");
 
 /**
  * 해당 id 해당 기기의 token insert
